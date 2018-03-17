@@ -1,0 +1,81 @@
+footer {
+  border-top: 1px solid $border-color;
+  padding: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  min-height: $navbar-height;
+  box-sizing: border-box;
+
+  .logo-name {
+    font-family: "Cinzel", serif;
+  }
+
+  .social-links {
+    svg {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      border-radius: 100%;
+      margin-right: 24px;
+      cursor: pointer;
+      border: 3px solid;
+      transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        border-color: $dark !important;
+      }
+
+      path {
+        fill: $dark;
+        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      &.facebook {
+        border-color: #3b5998;
+
+        &:hover {
+          path {
+            fill: #3b5998;
+          }
+        }
+      }
+
+      &.twitter {
+        border-color: #3ba9ee;
+
+        &:hover {
+          path {
+            fill: #3ba9ee;
+          }
+        }
+      }
+    }
+  }
+
+  .links {
+    display: inline-block;
+    font-weight: 200;
+
+    span {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .links span {
+    &:nth-child(2) {
+      display: none;
+    }
+    &:nth-child(3) {
+      margin-top: 12px;
+      display: block;
+    }
+  }
+}
