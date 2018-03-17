@@ -22,15 +22,15 @@ const loadPageToMain = sitename => {
   if (sitename !== "contact") {
     $main.load(sitename + ".html main>*", () => {
       console.log(sitename, "loaded");
-
-      $(".icon-section").on("click", function () {
-        $(".vorteile-container").css("left", "-100vw");
-      });
+      if (sitename === "index" || sitename === "contact") {
+        setupContactForm();
+      }
     });
   } else {
     $main.load("index.html main>*", () => {
       // Scroll to Contact and init contact form
       scrollToContact();
+
       setupContactForm();
 
       console.log(sitename, "loaded");
@@ -110,15 +110,16 @@ const setupContactForm = () => {
   $("form").off();
 
   console.log("initilizing contact form");
-  $(".message-sent").hide();
-  $(".message-error").hide();
-  $(".checkmark").hide();
   $(".contact-status").hide();
+  $(".modal .checkmark").hide();
 
-  $("form").on("submit", () => {
+
+  $("form").submit(() => {
     $(".kontakt-container .modal, .kontakt-container .overlay").addClass(
       "active"
     );
+
+    console.log("contact from send");
 
     const name = $("#name").val(),
       mail = $("#mail").val(),
@@ -138,9 +139,9 @@ const setupContactForm = () => {
       success: res => {
         console.log("mail sent");
         $(".message-status").hide();
-        $(".modal .loader").hide();
         $(".modal .checkmark").show(200);
         $(".message-sent").show(200);
+        $(".modal .loader").hide();
 
         setTimeout(() => {
           $(
