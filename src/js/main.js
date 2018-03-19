@@ -24,6 +24,8 @@ const loadPageToMain = sitename => {
       console.log(sitename, "loaded");
       if (sitename === "index" || sitename === "contact") {
         setupContactForm();
+      } else if (sitename === "datenschutz") {
+        setupCheckbox();
       }
     });
   } else {
@@ -39,12 +41,12 @@ const loadPageToMain = sitename => {
 };
 
 const setPageTitle = title => {
-  const titleName = "PN DataSecure - ";
+  const titleName = "Externe Datenschutzbeauftragte | DSGVO | BDSG - ";
 
   switch (title) {
     case "home":
     case "contact":
-      document.title = titleName + "Über uns";
+      document.title = titleName;
       break;
     case "impressum":
       document.title = titleName + "Impressum";
@@ -53,7 +55,7 @@ const setPageTitle = title => {
       document.title = titleName + "Datenschutzerklärung";
       break;
     default:
-      document.title = titleName + "Über uns";
+      document.title = titleName;
   }
 };
 
@@ -179,6 +181,32 @@ const setupContactForm = () => {
   });
 
   contactInitialized = true;
+};
+
+const setupCheckbox = () => {
+  const checkboxLabel = $(".checkbox span");
+
+  if (window["ga-disable-UA-86172073-5"] === true) {
+    console.log("Google Analytics is already disabled");
+    checkboxLabel.text("Google Analytics ist für diese Sitzung deaktiviert");
+    $('.checkbox .cbx').prop("checked", false);
+  } else {
+    console.log("Google Analytics is enabled");
+    checkboxLabel.text("Google Analytics ist für diese Sitzung aktiviert");
+    $('.checkbox .cbx').prop("checked", true);
+  }
+
+  $('.checkbox .cbx').change(function () {
+    if (!this.checked) {
+      console.log("checkbox now unchecked, google analytics will be disabled");
+      window["ga-disable-UA-86172073-5"] = true;
+      checkboxLabel.text("Google Analytics ist für diese Sitzung deaktiviert");
+    } else {
+      console.log("checkbox now checked, google analytics will be enabled");
+      window["ga-disable-UA-86172073-5"] = false;
+      checkboxLabel.text("Google Analytics ist für diese Sitzung aktiviert");
+    }
+  });
 };
 
 // ########################################

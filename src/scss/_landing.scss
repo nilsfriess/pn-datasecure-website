@@ -59,13 +59,13 @@
       left: -40px;
     }
     li:last-child:before {
-      left: -4px;
+      left: -8px;
     }
     li:first-child:after {
       right: -40px;
     }
     li:last-child:after {
-      right: -4px;
+      right: -8px;
     }
   }
 
@@ -108,8 +108,7 @@
   }
 
   .landing-container .cert {
-    transform: scale(0.9);
-    right: 0;
+    right: 20px;
   }
 
   .landing-container h1 {

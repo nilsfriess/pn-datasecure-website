@@ -31,7 +31,7 @@ gulp.task("jshint", () => {
 gulp.task("build-scss", () => {
   return gulp
     .src("src/scss/**/*.scss")
-    .pipe(wait(350))
+    .pipe(wait(500))
     .pipe(gulpPlumber())
     .pipe(gulpSourcemaps.init())
     .pipe(gulpSass().on("error", gulpSass.logError))
@@ -67,7 +67,7 @@ gulp.task("build-js", () => {
       })
     )
     .pipe(gulpConcat("bundle.min.js"))
-    .pipe(stripDebug())
+    // .pipe(stripDebug())
     .pipe(gulpUglify())
     .pipe(gulpSourcemaps.write("."))
     .pipe(gulp.dest("./dist/js"))

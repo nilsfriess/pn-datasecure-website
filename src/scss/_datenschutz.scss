@@ -51,6 +51,16 @@
   .mtop {
     margin-top: 60px;
   }
+
+  .checkbox {
+    position: relative;
+
+    span {
+      position: absolute;
+      top: 0;
+      left: 56px;
+    }
+  }
 }
 
 @media screen and (min-width: 500px) {
