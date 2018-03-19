@@ -58,6 +58,7 @@ footer {
   .links {
     display: inline-block;
     font-weight: 200;
+    margin-right: 24px;
 
     span {
       &:hover {
@@ -68,14 +69,13 @@ footer {
   }
 }
 
-@media screen and (max-width: 430px) {
-  .links span {
-    &:nth-child(2) {
-      display: none;
-    }
-    &:nth-child(3) {
-      margin-top: 12px;
-      display: block;
-    }
+@media screen and (max-width: 500px) {
+  footer .links .pipe {
+    display: none;
+  }
+
+  footer .links .impressum-footer {
+    display: block;
+    margin-bottom: 4px;
   }
 }
