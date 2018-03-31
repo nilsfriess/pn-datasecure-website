@@ -67,7 +67,7 @@ gulp.task("build-js", () => {
       })
     )
     .pipe(gulpConcat("bundle.min.js"))
-    // .pipe(stripDebug())
+    .pipe(stripDebug())
     .pipe(gulpUglify())
     .pipe(gulpSourcemaps.write("."))
     .pipe(gulp.dest("./dist/js"))
@@ -76,18 +76,21 @@ gulp.task("build-js", () => {
 
 gulp.task("reload-html", () => {
   return gulp
-  .src(["src/*.html", "src/templates/*.html"])
-  .pipe(gulp.dest("./dist"))
-  .pipe(gulpConnect.reload());
+    .src(["src/*.html", "src/templates/*.html"])
+    .pipe(gulp.dest("./dist"))
+    .pipe(gulpConnect.reload());
 });
 
 gulp.task("watch", () => {
   gulpConnect.server({
     livereload: true,
     root: 'dist',
-    host: "0.0.0.0"
+    host: "0.0.0.0",
+    port: 8888
   });
   gulp.watch("src/**/*.html", ["reload-html"]);
   gulp.watch("src/js/**/*.js", ["jshint", "build-js"]);
   gulp.watch("src/scss/**/*.scss", ["build-scss"]);
 });
+
+gulp.task('build', ['build-scss', 'build-js', 'reload-html'])
