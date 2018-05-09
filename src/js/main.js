@@ -108,13 +108,12 @@ const scrollToContact = () => {
 };
 
 const setupContactForm = () => {
-  console.log($("form"))
+  console.log($("form"));
   $("form").off();
 
   console.log("initilizing contact form");
   $(".contact-status").hide();
   $(".modal .checkmark").hide();
-
 
   $("form").submit(() => {
     $(".kontakt-container .modal, .kontakt-container .overlay").addClass(
@@ -154,7 +153,9 @@ const setupContactForm = () => {
           $(".modal .checkmark").hide();
           $(".message-sent").hide();
           $("form").trigger("reset");
-          $(".contact-status").show().text("Ihre Nachricht wurde gesendet");
+          $(".contact-status")
+            .show()
+            .text("Ihre Nachricht wurde gesendet");
         }, 3000);
       },
       error: err => {
@@ -171,8 +172,9 @@ const setupContactForm = () => {
           $(".modal .loader").show();
           $(".modal .checkmark").hide();
           $(".message-sent").hide();
-          $(".contact-status").show().text("Beim Senden der Nachricht ist ein Fehler aufgetreten");
-
+          $(".contact-status")
+            .show()
+            .text("Beim Senden der Nachricht ist ein Fehler aufgetreten");
         }, 4000);
       }
     });
@@ -183,31 +185,31 @@ const setupContactForm = () => {
   contactInitialized = true;
 };
 
-const setupCheckbox = () => {
-  const checkboxLabel = $(".checkbox span");
+// const setupCheckbox = () => {
+//   const checkboxLabel = $(".checkbox span");
 
-  if (window["ga-disable-UA-86172073-5"] === true) {
-    console.log("Google Analytics is already disabled");
-    checkboxLabel.text("Google Analytics ist für diese Sitzung deaktiviert");
-    $('.checkbox .cbx').prop("checked", false);
-  } else {
-    console.log("Google Analytics is enabled");
-    checkboxLabel.text("Google Analytics ist für diese Sitzung aktiviert");
-    $('.checkbox .cbx').prop("checked", true);
-  }
+//   if (window["ga-disable-UA-86172073-5"] === true) {
+//     console.log("Google Analytics is already disabled");
+//     checkboxLabel.text("Google Analytics ist für diese Sitzung deaktiviert");
+//     $('.checkbox .cbx').prop("checked", false);
+//   } else {
+//     console.log("Google Analytics is enabled");
+//     checkboxLabel.text("Google Analytics ist für diese Sitzung aktiviert");
+//     $('.checkbox .cbx').prop("checked", true);
+//   }
 
-  $('.checkbox .cbx').change(function () {
-    if (!this.checked) {
-      console.log("checkbox now unchecked, google analytics will be disabled");
-      window["ga-disable-UA-86172073-5"] = true;
-      checkboxLabel.text("Google Analytics ist für diese Sitzung deaktiviert");
-    } else {
-      console.log("checkbox now checked, google analytics will be enabled");
-      window["ga-disable-UA-86172073-5"] = false;
-      checkboxLabel.text("Google Analytics ist für diese Sitzung aktiviert");
-    }
-  });
-};
+//   $('.checkbox .cbx').change(function () {
+//     if (!this.checked) {
+//       console.log("checkbox now unchecked, google analytics will be disabled");
+//       window["ga-disable-UA-86172073-5"] = true;
+//       checkboxLabel.text("Google Analytics ist für diese Sitzung deaktiviert");
+//     } else {
+//       console.log("checkbox now checked, google analytics will be enabled");
+//       window["ga-disable-UA-86172073-5"] = false;
+//       checkboxLabel.text("Google Analytics ist für diese Sitzung aktiviert");
+//     }
+//   });
+// };
 
 // ########################################
 
@@ -284,7 +286,6 @@ $(window).on("popstate, load", () => {
   setNavbarActive(currentSiteName, currentSiteName);
   setPageTitle(currentSiteName);
 });
-
 
 // vorteilehandler
 
